@@ -6,7 +6,11 @@
 //  Copyright © 2018 Alex Vlasov. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#else
 #import <Cocoa/Cocoa.h>
+#endif
 
 //! Project version number for EthereumABI.
 FOUNDATION_EXPORT double EthereumABIVersionNumber;
