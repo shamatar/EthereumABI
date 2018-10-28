@@ -9,27 +9,27 @@ import BigInt
 public extension ABI {
     // JSON Decoding
     public struct Input: Decodable {
-        var name: String?
-        var type: String
-        var indexed: Bool?
-        var components: [Input]?
+        public var name: String?
+        public var type: String
+        public var indexed: Bool?
+        public var components: [Input]?
     }
     
     public struct Output: Decodable {
-        var name: String?
-        var type: String
-        var components: [Output]?
+        public var name: String?
+        public var type: String
+        public var components: [Output]?
     }
 
     public struct Record: Decodable {
-        var name: String?
-        var type: String?
-        var payable: Bool?
-        var constant: Bool?
-        var stateMutability: String?
-        var inputs: [ABI.Input]?
-        var outputs: [ABI.Output]?
-        var anonymous: Bool?
+        public var name: String?
+        public var type: String?
+        public var payable: Bool?
+        public var constant: Bool?
+        public var stateMutability: String?
+        public var inputs: [ABI.Input]?
+        public var outputs: [ABI.Output]?
+        public var anonymous: Bool?
     }
     
     public enum Element {
@@ -58,25 +58,25 @@ public extension ABI {
         }
         
         public struct Constructor {
-            let inputs: [InOut]
-            let constant: Bool
-            let payable: Bool
+            public let inputs: [InOut]
+            public let constant: Bool
+            public let payable: Bool
         }
         
         public struct Fallback {
-            let constant: Bool
-            let payable: Bool
+            public let constant: Bool
+            public let payable: Bool
         }
         
         public struct Event {
-            let name: String
-            let inputs: [Input]
-            let anonymous: Bool
+            public let name: String
+            public let inputs: [Input]
+            public let anonymous: Bool
             
-            struct Input {
-                let name: String
-                let type: ParameterType
-                let indexed: Bool
+            public struct Input {
+                public let name: String
+                public let type: ParameterType
+                public let indexed: Bool
             }
         }
     }
