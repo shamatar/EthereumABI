@@ -44,6 +44,33 @@ public extension ABI {
         case fallback(Fallback)
         case event(Event)
         
+        public enum StateMutability {
+            case payable
+            case mutating
+            case view
+            case pure
+            
+            var isConstant: Bool {
+                switch self {
+                case .payable:
+                    return false
+                case .mutating:
+                    return false
+                default:
+                    return true
+                }
+            }
+            
+            var isPayable: Bool {
+                switch self {
+                case .payable:
+                    return true
+                default:
+                    return false
+                }
+            }
+        }
+        
         public struct InOut {
             public let name: String
             public let type: ParameterType
@@ -53,19 +80,38 @@ public extension ABI {
             public let name: String?
             public let inputs: [InOut]
             public let outputs: [InOut]
+            public let stateMutability: StateMutability? = nil
             public let constant: Bool
             public let payable: Bool
+            
+            public init(name: String?, inputs: [InOut], outputs: [InOut], constant: Bool, payable: Bool) {
+                self.name = name
+                self.inputs = inputs
+                self.outputs = outputs
+                self.constant = constant
+                self.payable = payable
+            }
         }
         
         public struct Constructor {
             public let inputs: [InOut]
             public let constant: Bool
             public let payable: Bool
+            public init(inputs: [InOut], constant: Bool, payable: Bool) {
+                self.inputs = inputs
+                self.constant = constant
+                self.payable = payable
+            }
         }
         
         public struct Fallback {
             public let constant: Bool
             public let payable: Bool
+            
+            public init(constant: Bool, payable: Bool) {
+                self.constant = constant
+                self.payable = payable
+            }
         }
         
         public struct Event {
@@ -73,10 +119,22 @@ public extension ABI {
             public let inputs: [Input]
             public let anonymous: Bool
             
+            public init(name: String, inputs: [Input], anonymous: Bool) {
+                self.name = name
+                self.inputs = inputs
+                self.anonymous = anonymous
+            }
+            
             public struct Input {
                 public let name: String
                 public let type: ParameterType
                 public let indexed: Bool
+                
+                public init(name: String, type: ParameterType, indexed: Bool) {
+                    self.name = name
+                    self.type = type
+                    self.indexed = indexed
+                }
             }
         }
     }
