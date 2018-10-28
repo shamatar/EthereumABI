@@ -74,6 +74,11 @@ public extension ABI {
         public struct InOut {
             public let name: String
             public let type: ParameterType
+            
+            public init(name: String, type: ParameterType) {
+                self.name = name
+                self.type = type
+            }
         }
         
         public struct Function {
