@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "EthereumABI"
-s.version          = "1.1.0"
+s.version          = "1.2.0"
 s.summary          = "Ethereum ABI module in vanilla Swift for iOS ans macOS"
 
 s.description      = <<-DESC
@@ -13,7 +13,7 @@ s.author           = { "Alex Vlasov" => "alex.m.vlasov@gmail.com" }
 s.source           = { :git => 'https://github.com/shamatar/EthereumABI.git', :tag => s.version.to_s }
 s.social_media_url = 'https://twitter.com/shamatar'
 
-s.swift_version = '4.1'
+s.swift_version = '4.2'
 s.module_name = 'EthereumABI'
 s.ios.deployment_target = "9.0"
 s.osx.deployment_target = "10.11"
@@ -23,5 +23,5 @@ s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
 s.dependency 'CryptoSwift', '~> 0.13'
 s.dependency 'BigInt', '~> 3.1'
-s.dependency 'EthereumAddress', '~> 1.0.0'
+s.dependency 'EthereumAddress', '~> 1.1.0'
 end
