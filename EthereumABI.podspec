@@ -21,7 +21,7 @@ s.source_files = "EthereumABI/Classes/*.{swift}", "EthereumABI/EthereumABI.h"
 s.public_header_files = "EthereumABI/EthereumABI.h"
 s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
-s.dependency 'CryptoSwift', '~> 0.13'
+s.dependency 'CryptoSwift', '~> 1.0'
 s.dependency 'BigInt', '~> 3.1'
 s.dependency 'EthereumAddress', '~> 1.1.0'
 end
