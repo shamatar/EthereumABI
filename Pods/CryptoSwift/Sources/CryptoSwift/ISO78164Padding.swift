@@ -1,7 +1,7 @@
 //
 //  CryptoSwift
 //
-//  Copyright (C) 2014-2017 Marcin Krzyżanowski <marcin@krzyzanowskim.com>
+//  Copyright (C) Marcin Krzyżanowski <marcin@krzyzanowskim.com>
 //  This software is provided 'as-is', without any express or implied warranty.
 //
 //  In no event will the authors be held liable for any damages arising from the use of this software.
@@ -15,9 +15,28 @@
 
 import Foundation
 
-extension AES {
-  /// Initialize with CBC block mode.
-  public convenience init(key: String, iv: String, padding: Padding = .pkcs7) throws {
-    try self.init(key: key.bytes, blockMode: CBC(iv: iv.bytes), padding: padding)
+// First byte is 0x80, rest is zero padding
+// http://www.crypto-it.net/eng/theory/padding.html
+// http://www.embedx.com/pdfs/ISO_STD_7816/info_isoiec7816-4%7Bed21.0%7Den.pdf
+struct ISO78164Padding: PaddingProtocol {
+  init() {
+  }
+
+  func add(to bytes: Array<UInt8>, blockSize: Int) -> Array<UInt8> {
+    var padded = Array(bytes)
+    padded.append(0x80)
+
+    while (padded.count % blockSize) != 0 {
+      padded.append(0x00)
+    }
+    return padded
+  }
+
+  func remove(from bytes: Array<UInt8>, blockSize _: Int?) -> Array<UInt8> {
+    if let idx = bytes.lastIndex(of: 0x80) {
+      return Array(bytes[..<idx])
+    } else {
+      return bytes
+    }
   }
 }

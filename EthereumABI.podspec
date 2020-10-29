@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = "EthereumABI"
-s.version          = "1.2.1"
+s.version          = "1.3.0"
 s.summary          = "Ethereum ABI module in vanilla Swift for iOS ans macOS"
 
 s.description      = <<-DESC
@@ -23,5 +23,5 @@ s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
 s.dependency 'CryptoSwift', '~> 1.0'
 s.dependency 'BigInt', '~> 3.1'
-s.dependency 'EthereumAddress', '~> 1.1.1'
+s.dependency 'EthereumAddress', '~> 1.3'
 end

@@ -1,7 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
+# source 'https://cdn.cocoapods.org/'
+
 def import_pods
   pod 'BigInt', '~> 3.1'
-  pod 'CryptoSwift', '~> 0.13'
-  pod 'EthereumAddress', '~> 1.0'
+  pod 'CryptoSwift', '~> 1.0'
+  pod 'EthereumAddress', '~> 1.3'
 end
 
 target 'EthereumABI' do

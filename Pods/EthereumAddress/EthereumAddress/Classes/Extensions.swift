@@ -72,18 +72,7 @@ extension String {
         }
         return range.lowerBound
     }
-    
-    //    func split(intoChunksOf chunkSize: Int) -> [String] {
-    //        var output = [String]()
-    //        let splittedString = self
-    //            .map { $0 }
-    //            .split(intoChunksOf: chunkSize)
-    //        splittedString.forEach {
-    //            output.append($0.map { String($0) }.joined(separator: ""))
-    //        }
-    //        return output
-    //    }
-    
+        
     subscript (bounds: CountableClosedRange<Int>) -> String {
         let start = index(self.startIndex, offsetBy: bounds.lowerBound)
         let end = index(self.startIndex, offsetBy: bounds.upperBound)
@@ -110,12 +99,6 @@ extension String {
             return String(self.suffix(toLength))
         }
     }
-    
-    //    func interpretAsBinaryData() -> Data? {
-    //        let padded = self.padding(toLength: ((self.count + 7) / 8) * 8, withPad: "0", startingAt: 0)
-    //        let byteArray = padded.split(intoChunksOf: 8).map { UInt8(strtoul($0, nil, 2)) }
-    //        return Data(byteArray)
-    //    }
     
     func hasHexPrefix() -> Bool {
         return self.hasPrefix("0x")
@@ -177,7 +160,9 @@ extension Character {
 
 extension Array where Element == UInt8 {
     init(hex: String) {
-        self.init(reserveCapacity: hex.unicodeScalars.lazy.underestimatedCount)
+        self.init()
+        self.reserveCapacity(hex.unicodeScalars.lazy.underestimatedCount)
+//        self.init(reserveCapacity: hex.unicodeScalars.lazy.underestimatedCount)
         var buffer: UInt8?
         var skip = hex.hasPrefix("0x") ? 2 : 0
         for char in hex.unicodeScalars.lazy {
